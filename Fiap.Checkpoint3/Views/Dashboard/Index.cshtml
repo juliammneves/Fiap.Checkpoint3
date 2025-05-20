@@ -1,0 +1,51 @@
+﻿@model Fiap.Checkpoint3.Web.Models.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_Layout";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<div class="row g-4">
+    <div class="col-sm-6 col-lg-4">
+        <div class="card text-white bg-primary h-100">
+            <div class="card-body">
+                <h5 class="card-title">Total de Tarefas</h5>
+                <p class="display-6">@Model.TotalTasks</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+        <div class="card text-white bg-warning h-100">
+            <div class="card-body">
+                <h5 class="card-title">Abertas</h5>
+                <p class="display-6">@Model.OpenTasks</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+        <div class="card text-white bg-info h-100">
+            <div class="card-body">
+                <h5 class="card-title">Em Andamento</h5>
+                <p class="display-6">@Model.InProgressTasks</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+        <div class="card text-white bg-success h-100">
+            <div class="card-body">
+                <h5 class="card-title">Concluídas</h5>
+                <p class="display-6">@Model.CompletedTasks</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+        <div class="card text-dark bg-light h-100">
+            <div class="card-body">
+                <h5 class="card-title">Criadas Este Mês</h5>
+                <p class="display-6">@Model.TasksThisMonth</p>
+            </div>
+        </div>
+    </div>
+</div>

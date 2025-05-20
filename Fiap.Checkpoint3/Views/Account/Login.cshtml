@@ -1,0 +1,53 @@
+﻿@model Fiap.Checkpoint3.Web.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout";  // ou o seu layout padrão
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-4 col-md-6">
+        <div class="card mt-5 border-0 shadow-sm">
+            <div class="card-header" style="background-color:#264653; color:#ffffff;">
+                <h4 class="mb-0 text-center">@ViewData["Title"]</h4>
+            </div>
+            <div class="card-body">
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert alert-info" role="alert">@TempData["Message"]</div>
+                }
+
+                @if (ViewData.ModelState.ErrorCount > 0)
+                {
+                    <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+                }
+
+                <form asp-action="Login" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Username" class="form-label"></label>
+                        <input asp-for="Username" class="form-control" placeholder="Digite seu usuário" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password" class="form-control" placeholder="Digite sua senha" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" name="returnUrl" value="@ViewData["ReturnUrl"]" />
+                    <button type="submit" class="btn text-white w-100" style="background-color:#264653;">Entrar</button>
+                    <div class="text-center mt-3">
+                        <a asp-action="Register" class="text-muted">Criar nova conta</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

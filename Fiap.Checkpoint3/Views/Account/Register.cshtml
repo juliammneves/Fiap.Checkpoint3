@@ -1,0 +1,67 @@
+﻿@model Fiap.Checkpoint3.Web.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Cadastrar";
+    Layout = "_Layout";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+        <div class="card mt-5 border-0 shadow-sm">
+            <div class="card-header" style="background-color:#264653; color:#ffffff;">
+                <h4 class="mb-0 text-center">@ViewData["Title"]</h4>
+            </div>
+            <div class="card-body">
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert alert-success" role="alert">@TempData["Message"]</div>
+                }
+
+                @if (ViewData.ModelState.ErrorCount > 0)
+                {
+                    <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+                }
+
+                <form asp-action="Register" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Username" class="form-label"></label>
+                        <input asp-for="Username" class="form-control" placeholder="Digite um usuário único" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="Password" class="form-label"></label>
+                            <input asp-for="Password" class="form-control" placeholder="Mínimo 6 caracteres" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="ConfirmPassword" class="form-label"></label>
+                            <input asp-for="ConfirmPassword" class="form-control" placeholder="Repita a senha" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label"></label>
+                        <input asp-for="FullName" class="form-control" placeholder="Nome completo" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" placeholder="seu@mail.com" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn text-white w-100" style="background-color:#264653;">Cadastrar</button>
+                    <div class="text-center mt-3">
+                        <a asp-action="Login" class="text-muted">Já tenho conta</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,59 @@
+﻿@model Fiap.Checkpoint3.Model.TaskItem
+
+@{
+    ViewData["Title"] = "Nova Tarefa";
+    Layout = "_Layout";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mt-4 border-0 shadow-sm">
+            <div class="card-header" style="background-color:#264653; color:#fff;">
+                <h4 class="mb-0 text-center">@ViewData["Title"]</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label"></label>
+                        <input asp-for="Title" class="form-control" placeholder="Título da tarefa" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Descrição (opcional)"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="Priority" class="form-label"></label>
+                            <select asp-for="Priority" class="form-select">
+                                <option>Alta</option>
+                                <option selected>Média</option>
+                                <option>Baixa</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="Status" class="form-label"></label>
+                            <select asp-for="Status" class="form-select">
+                                <option selected>Aberto</option>
+                                <option>Em Andamento</option>
+                                <option>Concluído</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn text-white w-100" style="background-color:#264653;">Salvar</button>
+                    <div class="text-center mt-3">
+                        <a asp-action="Index" class="text-muted">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

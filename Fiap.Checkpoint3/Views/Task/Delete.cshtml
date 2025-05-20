@@ -1,0 +1,39 @@
+﻿@model Fiap.Checkpoint3.Model.TaskItem
+
+@{
+    ViewData["Title"] = "Excluir Tarefa";
+    Layout = "_Layout";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mt-4 border-0 shadow-sm">
+            <div class="card-header" style="background-color:#264653; color:#fff;">
+                <h4 class="mb-0 text-center">@ViewData["Title"]</h4>
+            </div>
+            <div class="card-body">
+                <p>Você tem certeza que deseja excluir a tarefa abaixo?</p>
+                <dl class="row">
+                    <dt class="col-sm-4">Título</dt>
+                    <dd class="col-sm-8">@Model.Title</dd>
+
+                    <dt class="col-sm-4">Descrição</dt>
+                    <dd class="col-sm-8">@(!string.IsNullOrEmpty(Model.Description) ? Model.Description : "Tarefa sem descrição.")</dd>
+
+                    <dt class="col-sm-4">Prioridade</dt>
+                    <dd class="col-sm-8"><span class="badge bg-warning text-dark">@Model.Priority</span></dd>
+
+                    <dt class="col-sm-4">Status</dt>
+                    <dd class="col-sm-8"><span class="badge bg-info">@Model.Status</span></dd>
+                </dl>
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="d-flex justify-content-between mt-4">
+                        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+                        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
